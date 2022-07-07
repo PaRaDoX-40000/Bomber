@@ -25,7 +25,16 @@ public class BombPool : MonoBehaviour
 
     public bool TryGetObjectr(out GameObject result)
     {
-        result = _pool.First(p => p.activeSelf == false);
+        result = null;
+        try
+        {
+            result = _pool.First(p => p.activeSelf == false);
+        }
+        catch
+        {
+            Debug.LogError("Не достаточно бомб для спавна");
+        }
+      
 
         return result != null;
     }
